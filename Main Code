@@ -1,0 +1,78 @@
+import time
+print("Welcome to Adam's Bed and Breakfast booking system version 0.2.0 Alpha.")
+login = input("If you are a customer looking to book a room please enter 'c' if you are staff please enter 's'")
+
+#-----------------------Staff Login-----------------------------------------#
+
+if login == "s":
+    spassword = input("Enter the staff password")
+
+    if spassword == "Admin":
+        print("welcome to the B&B Staff portal")
+
+    else:
+        print("Incorrect password, Goodbye")
+        time.sleep(3)
+        exit()
+
+#-----------------------Customer room details--------------------------------#
+        
+elif login == "c":
+    print("Welocme to the B&B Booking Menu, please enter the details as prompted to book a room")
+
+    fname = str(input("Enter your first name:"))
+
+    lname = str(input("Enter your last name:"))
+
+    dobvalidation = False
+    while not dobvalidation:
+        try:
+            dob = int(input("Enter your date if birth in format DDMMYYYY (no spaces between and no dashes (example: 14112002):"))
+            if dob > 999999 and dob <= 99999999:
+                dobvalidation = True
+        except:
+                print("Make sure to follow the guide and enter the correct date of birth.")
+
+    print("Details Accepted, please select the room you wish to book")
+
+    room1info = open("room1.txt","rt")
+    for a in room1info:
+        print(a)
+
+    room2info = open("room2.txt","rt")
+    for b in room2info:
+        print(b)
+
+    room3info = open("room3.txt","rt")
+    for c in room3info:
+        print(c)
+
+    room4info = open("room4.txt","rt")
+    for d in room4info:
+        print(d)
+
+    roomselect = int(input("Select the room that you wish to book using the related numbers (1-4)"))
+
+    if roomselect == "1":
+        file = open("room1.txt","rt")
+        print(file.read())
+        search_word = "Available"
+        if(search_word in file.read()):
+            print("Room is availble and has been selected, please continue to payment.")
+        else:
+            print("Room Unavailable.")
+
+    elif roomselect == "2":
+        file = open("room2.txt")
+        print(file.read())
+        search_word = "Available"
+        if(search_word in file.read()):
+            print("Room is availble and has been selected, please continue to payment.")
+        else:
+            print("Room Unavailable.")
+            
+#-------------------------Invalid inputs-------------------------------------#
+
+else:
+    print("Invalid input.")
+
